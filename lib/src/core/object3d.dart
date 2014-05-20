@@ -144,7 +144,7 @@ class Object3D {
     children.add( object );
 
     // add to scene
-    Object3D scene = this;
+    Scene scene = this;
 
     while ( scene.parent != null ) {
       scene = scene.parent;
@@ -166,7 +166,7 @@ class Object3D {
       children.removeAt(index);
 
       // remove from scene
-      Object3D scene = this;
+      Scene scene = this;
 
       while ( scene.parent != null ) {
         scene = scene.parent;

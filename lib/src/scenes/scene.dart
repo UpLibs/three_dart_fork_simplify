@@ -9,10 +9,8 @@ part of three;
 
 class Scene extends Object3D {
   Fog fog;
-  Material overrideMaterial;
   //bool matrixAutoUpdate;
   List<Object3D> objects;
-  List<Light> lights;
   List __objectsAdded;
   List __objectsRemoved;
 
@@ -21,23 +19,17 @@ class Scene extends Object3D {
     // super();
 
     fog = null;
-    overrideMaterial = null;
 
     matrixAutoUpdate = false;
 
     objects = [];
-    lights = [];
 
     __objectsAdded = [];
     __objectsRemoved = [];
   }
 
   void addObject( Object3D object ) {
-    if ( object is Light ) {
-      if ( lights.indexOf( object ) == - 1 ) {
-        lights.add( object );
-      }
-    } else if ( !( object is Camera || object is Bone ) ) {
+    if ( !( object is Camera ) ) {
       if ( objects.indexOf( object ) == - 1 ) {
         objects.add( object );
         __objectsAdded.add( object );
@@ -58,13 +50,7 @@ class Scene extends Object3D {
 
   void removeObject( Object3D object ) {
     //TODO: "instanceof" replaced by "is"?
-    if ( object is Light ) {
-      int i = lights.indexOf( object );
-
-      if ( i != -1 ) {
-        lights.removeAt(i);
-      }
-    } else if ( !( object is Camera ) ) {
+    if ( !( object is Camera ) ) {
       int i = objects.indexOf( object );
 
       if( i != -1 ) {
