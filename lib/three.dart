@@ -42,9 +42,6 @@ part 'src/renderers/css3d_renderer.dart';
 part 'src/renderers/renderables/irenderable.dart';
 
 part 'src/scenes/scene.dart';
-part 'src/scenes/fog.dart';
-part 'src/scenes/fog_linear.dart';
-part 'src/scenes/fog_exp2.dart';
 
 part 'src/uv_mapping.dart';
 

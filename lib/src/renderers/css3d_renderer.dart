@@ -156,13 +156,11 @@ class CSS3DRenderer implements Renderer {
   }
 
   
-  render( scene, camera ) {
+  render( Scene scene, PerspectiveCamera camera ) {
 
     var fov = 0.5 / Math.tan( camera.fov * Math.PI / 360 ) * _height;
-
-    
   
-    var style ;
+    String style ;
     
     if (_fixIEPerspective) {
       domElement.style.perspective = "${fov}px";
@@ -174,6 +172,21 @@ class CSS3DRenderer implements Renderer {
     }
     
     cameraElement.style.transform = style ;
+    
+    ///////////////////////////////
+    
+    if ( scene.__objectsRemoved.isNotEmpty ) {
+      for ( var object in scene.__objectsRemoved ) {
+        if ( object is CSS3DObject ) {
+          var element = object.element;
+          cameraElement.children.remove( element );
+        }
+      }
+      
+      scene.__objectsRemoved.clear() ;
+    }
+    
+    ///////////////////////////////
     
     Matrix4 camM = camera.matrixWorldInverse ;
     

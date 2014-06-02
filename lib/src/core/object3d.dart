@@ -165,16 +165,19 @@ class Object3D {
       object.parent = null;
       children.removeAt(index);
 
-      // remove from scene
-      Scene scene = this;
-
-      while ( scene.parent != null ) {
-        scene = scene.parent;
+      if (this is Scene) {
+        // remove from scene
+        Scene scene = this;
+  
+        while ( scene.parent != null ) {
+          scene = scene.parent;
+        }
+  
+        if (scene is Scene ) {
+          scene.removeObject( object );
+        }  
       }
-
-      if (scene is Scene ) {
-        scene.removeObject( object );
-      }
+      
     }
   }
 

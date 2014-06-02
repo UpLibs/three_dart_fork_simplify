@@ -8,7 +8,6 @@ part of three;
  */
 
 class Scene extends Object3D {
-  Fog fog;
   //bool matrixAutoUpdate;
   List<Object3D> objects;
   List __objectsAdded;
@@ -17,8 +16,6 @@ class Scene extends Object3D {
   Scene() {
     // TODO: check how to call super constructor
     // super();
-
-    fog = null;
 
     matrixAutoUpdate = false;
 
